@@ -1,0 +1,59 @@
+Códigos do Banco de dados da Slofi.Dev:
+
+create database slofyDev;
+
+use slofyDev;
+
+CREATE TABLE Usuario (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    dt_nascimento DATE,
+    telefone VARCHAR(20),
+    senha VARCHAR(255) NOT NULL,
+    endereco VARCHAR(255),
+    nacionalidade VARCHAR(255),
+    pais VARCHAR(255)
+);
+ 
+CREATE TABLE Profissionais (
+    id_profissionais INT PRIMARY KEY AUTO_INCREMENT,
+    curriculo VARCHAR(255),
+    experiencia VARCHAR(255),
+    cpf VARCHAR(45) UNIQUE,
+    especialidade VARCHAR(255),
+    area_atuacao VARCHAR(255),
+    Usuario_id_usuario INT NOT NULL,
+    FOREIGN KEY (Usuario_id_usuario) REFERENCES Usuario(id_usuario)
+);
+ 
+CREATE TABLE Clientes (
+    id_clientes INT PRIMARY KEY AUTO_INCREMENT,
+    empresa VARCHAR(255),
+    cnpj VARCHAR(255) UNIQUE,
+    setorAtuacao VARCHAR(255),
+    Usuario_id_usuario INT NOT NULL,
+    FOREIGN KEY (Usuario_id_usuario) REFERENCES Usuario(id_usuario)
+);
+ 
+CREATE TABLE Projeto (
+    id_projeto INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(255) NOT NULL,
+    descricao VARCHAR(255) NOT NULL,
+    dt_publicacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    prazo DATE,
+    status VARCHAR(255),
+    id_clientes INT NOT NULL,
+    FOREIGN KEY (id_clientes) REFERENCES Clientes(id_clientes)
+);
+ 
+CREATE TABLE Candidatura (
+    id_candidatura INT PRIMARY KEY AUTO_INCREMENT,
+    dt_candidatura DATETIME DEFAULT CURRENT_TIMESTAMP,
+    mensagem VARCHAR(255),
+    status VARCHAR(255),
+    id_profissionais INT NOT NULL,
+    id_projeto INT NOT NULL,
+    FOREIGN KEY (id_profissionais) REFERENCES Profissionais(id_profissionais),
+    FOREIGN KEY (id_projeto) REFERENCES Projeto(id_projeto)
+);
