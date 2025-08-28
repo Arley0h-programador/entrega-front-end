@@ -1,0 +1,212 @@
+$cor-principal: #9600c0;
+$cor-secundaria: #000000;
+$cor-fundo: #f0f0f0;
+$cor-fundo-card: #f7f7f7;
+$cor-texto-footer: #aaa;
+$font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family;
+  background-color: $cor-principal;
+  line-height: 1.5;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $cor-secundaria;
+  padding: 20px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  h1 {
+    color: white;
+    transition: color 0.3s ease;
+    &:hover { color: $cor-principal; }
+  }
+
+  .logo {
+    height: 120px;
+    width: auto;
+    transition: transform 0.5s ease;
+    animation: expandir 1s ease-in-out;
+    &:hover { transform: scale(1.2); }
+  }
+
+  nav {
+    display: flex;
+    gap: 25px;
+    a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      &:hover { color: $cor-principal; }
+    }
+  }
+}
+
+@keyframes expandir {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.destaque {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 40px;
+  background-color: $cor-fundo;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  .destaque-conteudo {
+    h2 {
+      font-size: 2.5em;
+      color: $cor-principal;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    .btn-comprar {
+      padding: 12px 25px;
+      background-color: $cor-principal;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      &:hover { background-color: darken($cor-principal, 15%); }
+    }
+  }
+
+  .destaque-imagem img {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 10px;
+    animation: fadeIn 1s ease-in-out;
+  }
+}
+
+.recursos {
+  padding: 50px 40px;
+  background-color: white;
+  text-align: center;
+
+  h3 {
+    font-size: 2em;
+    color: $cor-principal;
+    margin-bottom: 30px;
+  }
+
+  .recursos-lista {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+
+    .recurso {
+      background-color: $cor-fundo-card;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 250px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+    }
+  }
+}
+
+footer {
+  background-color: $cor-secundaria;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: auto;
+    gap: 20px;
+
+    .footer-info h3 { color: $cor-principal; }
+    .footer-info p { font-size: 0.95em; }
+    .footer-contact h4, .footer-social h4 { margin-bottom: 10px; color: $cor-principal; }
+    .footer-contact p, .footer-social p { font-size: 0.95em; }
+    .footer-contact a, .footer-social a {
+      color: white;
+      text-decoration: none;
+      margin: 0 5px;
+      transition: color 0.3s ease;
+      &:hover { color: $cor-principal; }
+    }
+  }
+
+  .footer-copy {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: $cor-texto-footer;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 1024px) {
+  .destaque .destaque-imagem img { max-width: 350px; }
+}
+
+@media (max-width: 768px) {
+  header { flex-direction: column; align-items: center; }
+  header nav { flex-direction: column; width: 100%; margin-top: 10px; }
+  header nav a { padding: 10px 0; border-bottom: 1px solid #eee; width: 100%; }
+  .destaque { flex-direction: column; text-align: center; }
+  .destaque .destaque-imagem img { max-width: 300px; }
+  .recursos .recursos-lista { flex-direction: column; align-items: center; }
+  .footer-content { flex-direction: column; align-items: center; text-align: center; }
+}
+
+//teste
+@media (max-width: 480px) {
+  header {
+    padding: 15px;
+  }
+  header nav a {
+    padding: 8px 0;
+    font-size: 0.9em;
+  }
+  .destaque {
+    padding: 30px 20px;
+  }
+  .destaque h2 {
+    font-size: 2em;
+  }
+  .destaque p {
+    font-size: 1em;
+  }
+  .destaque .destaque-imagem img {
+    max-width: 250px;
+  }
+  .recursos {
+    padding: 30px 20px;
+  }
+  .recursos .recursos-lista .recurso {
+    max-width: 90%;
+  }
+}
